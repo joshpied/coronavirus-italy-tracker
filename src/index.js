@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import mapboxgl from 'mapbox-gl';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaHBpZWQiLCJhIjoiY2s3bmdjNmVrMHN5cDNtcWdlNjg1eWNzYSJ9.nkJv7R4w4V_KS_l9qStMMw';
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

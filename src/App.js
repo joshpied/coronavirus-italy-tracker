@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ResponsiveEmbed from 'react-bootstrap/ResponsiveEmbed';
 
-export default App;
+import Map from './components/maps/Map';
+import RecentStats from './components/widgets/RecentStats';
+import DailyCases from './components/charts/DailyCases';
+
+export default class App extends Component {
+  render() {
+    return (
+      <div className="m-4">
+        <Row>
+          <Col xs={12} className="">
+            <h1 className="text-light title">🇮🇹 Italy Coronavirus Tracker</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={7}>
+            <ResponsiveEmbed>
+              <Map />
+            </ResponsiveEmbed>
+          </Col>
+          <Col lg={5}>
+            <RecentStats />
+            <h2 className="text-light title mt-4">Daily Totals</h2>
+            <DailyCases />
+          </Col>
+        </Row>
+        <footer className="text-light">
+          <a href="https://github.com/joshpied" target="_blank">
+            Josh Piedimonte
+          </a>{' '}
+          {new Date().getFullYear()}
+        </footer>
+      </div>
+    );
+  }
+}
