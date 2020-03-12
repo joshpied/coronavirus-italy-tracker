@@ -18,9 +18,10 @@ export default class RecentStats extends Component {
         this.setState({
           data: {
             labels: data.daily_national_stats.map(day =>
-              new Intl.DateTimeFormat('en-GB', { month: 'short', day: 'numeric' }).format(
-                new Date(day.data)
-              )
+              new Intl.DateTimeFormat('en-GB', {
+                month: 'short',
+                day: 'numeric'
+              }).format(new Date(day.data))
             ),
             datasets: [
               {
@@ -45,8 +46,8 @@ export default class RecentStats extends Component {
                 data: data.daily_national_stats.map(
                   day => day.totale_attualmente_positivi
                 )
-							},
-							{
+              },
+              {
                 label: 'Deceased',
                 fill: false,
                 lineTension: 0.1,
@@ -65,11 +66,9 @@ export default class RecentStats extends Component {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: data.daily_national_stats.map(
-                  day => day.deceduti
-                )
-							},
-							{
+                data: data.daily_national_stats.map(day => day.deceduti)
+              },
+              {
                 label: 'Recovered',
                 fill: false,
                 lineTension: 0.1,
@@ -88,15 +87,12 @@ export default class RecentStats extends Component {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: data.daily_national_stats.map(
-                  day => day.dimessi_guariti
-                )
+                data: data.daily_national_stats.map(day => day.dimessi_guariti)
               }
             ]
           },
           isLoading: false
         });
-        console.log(this.state.labels);
       })
       .catch(error => this.setState({ error, isLoading: false }));
   }
