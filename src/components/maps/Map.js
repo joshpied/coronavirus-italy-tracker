@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
+import {fetch} from 'whatwg-fetch';
 import './Map.css';
 
 export default class Map extends Component {

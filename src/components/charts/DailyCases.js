@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
+import { fetch } from 'whatwg-fetch';
 
 export default class RecentStats extends Component {
   constructor(props) {
@@ -7,8 +8,19 @@ export default class RecentStats extends Component {
     this.state = {
       isLoading: true,
       error: null,
-      data: null
+      data: { labels: null } //////////////////////// TODO
     };
+  }
+
+  getDateString(date) {
+    let [dateString] = date.split(' ');
+    const [year, month, day] = dateString.split('-');
+    const newDate = new Date(year * 1, month * 1 - 1, day * 1);
+
+    return new Intl.DateTimeFormat('en-GB', {
+      month: 'short',
+      day: 'numeric'
+    }).format(newDate);
   }
 
   fetchStats() {
@@ -18,10 +30,7 @@ export default class RecentStats extends Component {
         this.setState({
           data: {
             labels: data.daily_national_stats.map(day =>
-              new Intl.DateTimeFormat('en-GB', {
-                month: 'short',
-                day: 'numeric'
-              }).format(new Date(day.data))
+              this.getDateString(day.data)
             ),
             datasets: [
               {
