@@ -26,15 +26,27 @@ export default class RecentStats extends Component {
     }).format(newDate);
   }
 
+  formatNumber(number) {
+    return new Intl.NumberFormat().format(number);
+  }
+
   fetchStats() {
-    fetch(`https://coronavirus-italia-api.now.sh/api/stats/national/recent`)
+    let url;
+    if (this.props.date)
+      url = `https://coronavirus-italia-api.now.sh/api/stats/national/${this.props.date}`;
+    else
+      url = `https://coronavirus-italia-api.now.sh/api/stats/national/recent`;
+
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         this.setState({
           stats: {
-            cases: data.national_stats.totale_attualmente_positivi,
-            deceased: data.national_stats.deceduti,
-            recovered: data.national_stats.dimessi_guariti,
+            cases: this.formatNumber(
+              data.national_stats.totale_attualmente_positivi
+            ),
+            deceased: this.formatNumber(data.national_stats.deceduti),
+            recovered: this.formatNumber(data.national_stats.dimessi_guariti),
             date: this.getDateString(data.national_stats.data)
           },
           isLoading: false
@@ -47,6 +59,10 @@ export default class RecentStats extends Component {
 
   componentDidMount() {
     this.fetchStats();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.date !== prevProps.date) this.fetchStats();
   }
 
   render() {

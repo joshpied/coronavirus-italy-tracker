@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
-import {fetch} from 'whatwg-fetch';
+import { fetch } from 'whatwg-fetch';
 import './Map.css';
 
 export default class Map extends Component {
@@ -12,7 +12,13 @@ export default class Map extends Component {
   }
 
   fetchData() {
-    fetch(`https://coronavirus-italia-api.now.sh/api/stats/regional/recent`)
+    let url;
+    if (this.props.date)
+      url = `https://coronavirus-italia-api.now.sh/api/stats/regional/${this.props.date}`;
+    else
+      url = `https://coronavirus-italia-api.now.sh/api/stats/regional/recent`;
+
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -101,7 +107,7 @@ export default class Map extends Component {
             // increase radius as zoom increases
             'heatmap-radius': {
               stops: [
-                [1,11],
+                [1, 11],
                 [11, 15],
                 [15, 20]
               ]
@@ -197,6 +203,10 @@ export default class Map extends Component {
 
   componentDidMount() {
     this.fetchData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.date !== prevProps.date) this.fetchData();
   }
 
   render() {

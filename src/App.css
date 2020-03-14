@@ -9,3 +9,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 5px;
 }
+@media only screen and (max-width: 992px) {
+  .recent-stats {
+    margin-top: 1em;
+  }
+}
