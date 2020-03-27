@@ -1,5 +1,5 @@
 body {
-  background: rgb(43, 42, 42);
+  background: #2b2a2a;
 }
 
 /* .app {
@@ -9,6 +9,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 5px;
 }
+
 @media only screen and (max-width: 992px) {
   .recent-stats {
     margin-top: 1em;

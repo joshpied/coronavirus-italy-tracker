@@ -13,7 +13,7 @@ export default class DateSelector extends Component {
   }
 
   getDisplayDate(date) {
-    let [dateString] = date.split(' ');
+    let [dateString] = date.split('T');
     const [year, month, day] = dateString.split('-');
     const newDate = new Date(year * 1, month * 1 - 1, day * 1);
 
@@ -25,7 +25,7 @@ export default class DateSelector extends Component {
   }
 
   getDateKey(date) {
-    let [dateString] = date.split(' '); // remove time from date
+    let [dateString] = date.split('T'); // remove time from date
     return dateString;
   }
 
@@ -72,7 +72,7 @@ export default class DateSelector extends Component {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {dates.map(date => (
+              {dates?.map(date => (
                 <Dropdown.Item
                   as="button"
                   key={date.dateKey}

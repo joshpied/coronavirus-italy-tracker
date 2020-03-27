@@ -15,7 +15,7 @@ export default class RecentStats extends Component {
   }
 
   getDateString(date) {
-    let [dateString] = date.split(' ');
+    let [dateString] = date.split('T');
     const [year, month, day] = dateString.split('-');
     const newDate = new Date(year * 1, month * 1 - 1, day * 1);
 
