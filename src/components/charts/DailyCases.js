@@ -53,7 +53,7 @@ export default class RecentStats extends Component {
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: data.daily_national_stats.map(
-                  day => day.totale_positivi
+                  day => day.totale_casi
                 )
               },
               {

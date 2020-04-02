@@ -42,9 +42,7 @@ export default class RecentStats extends Component {
       .then(data => {
         this.setState({
           stats: {
-            cases: this.formatNumber(
-              data.national_stats.totale_positivi
-            ),
+            cases: this.formatNumber(data.national_stats.totale_casi),
             deceased: this.formatNumber(data.national_stats.deceduti),
             recovered: this.formatNumber(data.national_stats.dimessi_guariti),
             date: this.getDateString(data.national_stats.data)

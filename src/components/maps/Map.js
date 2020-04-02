@@ -29,7 +29,7 @@ export default class Map extends Component {
               properties: {
                 region: region.denominazione_regione,
                 description: `<br/><h5>${region.denominazione_regione}</h5><h6>Total Cases: ${region.totale_positivi}</h6> <h6>Deceased: ${region.deceduti}</h6> <h6>Recovered: ${region.dimessi_guariti}</h6>`,
-                cases: region.totale_attualmente_positivi * 1,
+                cases: region.totale_casi * 1,
                 deceased: region.deceduti * 1,
                 recovered: region.dimessi_guariti * 1
               },
